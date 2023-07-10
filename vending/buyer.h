@@ -90,20 +90,10 @@ bool Checkout(Cart &cart){
         ofile.close();
         remove("input.txt");
         rename("temp.txt" , "input.txt");
-        ifstream ifile("profit.txt");
-        ofstream outfile("temp.txt");
-        string x;
-        int profit;
-        if (getline(ifile,x)){
-            profit = stoi(x) + total;
-        }else{
-            profit = total;
-        }
-        outfile << to_string(profit);
-        ifile.close();
+        ofstream outfile("profit.txt",ios :: app);
+        string x = cart.viewcart() + "\n";
+        outfile << x;
         outfile.close();
-        remove("profit.txt");
-        rename("temp.txt" , "profit.txt");
         cout<<" Change -- Rs. "<<cash-total<<"\n";
         cout<<" Thankyou for shopping :) \n";
         return true;
